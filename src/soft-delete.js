@@ -81,11 +81,8 @@ exports.default = function (Model, _ref) {
   Model.prototype.destroy = function softDestroy(options, cb) {
     var callback = cb === undefined && typeof options === 'function' ? options : cb;
 
-    return this.updateAttributes((0, _extends7.default)({}, scrubbed, (0, _defineProperty3.default)({}, deletedAt, new Date()))).then(function (result) {
-      return typeof cb === 'function' ? callback(null, result) : result;
-    }).catch(function (error) {
-      return typeof cb === 'function' ? callback(error) : _promise2.default.reject(error);
-    });
+    this.updateAttributes((0, _extends7.default)({}, scrubbed, (0, _defineProperty3.default)({}, deletedAt, new Date())))
+      .then(res => callback(null,res)).catch(callback);
   };
 
   Model.prototype.remove = Model.prototype.destroy;

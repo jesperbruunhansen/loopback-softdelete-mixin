@@ -1,11 +1,11 @@
 /* eslint-env mocha */
-import { assert } from 'chai';
-import loopback from 'loopback';
+const assert = require('chai');
+const loopback = require("loopback");
 
 const app = loopback;
 app.loopback = loopback;
 
-import mixin from '../src';
+const mixin = require("../src");
 
 mixin(app);
 
