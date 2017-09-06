@@ -56,7 +56,7 @@ exports.default = function (Model, _ref) {
 
   Model.defineProperty(deletedAt, { type: Date, required: false, default:null });
 
-  Model.destroyAll = function softDestroyAll(where, options, cb) {
+  Model.destroyAll = function softDestroyAll(where, options) {
     return Model.updateAll(where, (0, _extends7.default)({}, scrubbed, (0, _defineProperty3.default)({}, deletedAt, new Date())), options).then(function (result) {
       return typeof cb === 'function' ? cb(null, result) : result;
     }).catch(function (error) {
@@ -67,7 +67,7 @@ exports.default = function (Model, _ref) {
   Model.remove = Model.destroyAll;
   Model.deleteAll = Model.destroyAll;
 
-  Model.destroyById = function softDestroyById(id, options, cb) {
+  Model.destroyById = function softDestroyById(id, options) {
     return Model.updateAll((0, _defineProperty3.default)({}, idName, id), (0, _extends7.default)({}, scrubbed, (0, _defineProperty3.default)({}, deletedAt, new Date())), options).then(function (result) {
       return typeof cb === 'function' ? cb(null, result) : result;
     }).catch(function (error) {
